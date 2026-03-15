@@ -1,5 +1,4 @@
 # InventoryWizard Configuration
-# The magical sorting assistant for your Minecraft world! ✨
 
 settings:
   # Play magical sound effects when sorting
@@ -39,8 +38,8 @@ hotbar-priorities:
 
 # Wizard's wisdom: Messages shown to players
 messages:
-  chest-sorted: "§a✨ Chest magically sorted!"
-  inventory-sorted: "§a✨ Inventory organized with wizard magic!"
-  hotbar-sorted: "§6✨ Hotbar arranged by wizardry!"
-  all-sorted: "§b🧙✨ Complete inventory enchanted by the InventoryWizard!"
-  no-permission: "§c🧙✨ You lack the magical permission for this spell!"
+  chest-sorted: "Chest sorted"
+  inventory-sorted: "Inventory sorted"
+  hotbar-sorted: "Hotbar sorted"
+  all-sorted: "Inventory sorted"
+  no-permission: "No permissions to sort this"
