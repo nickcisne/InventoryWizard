@@ -26,15 +26,15 @@ public class InventoryWizardPlugin extends JavaPlugin {
         // Save default config
         saveDefaultConfig();
         
-        getLogger().info("InventoryWizard has awakened! ✨");
+        getLogger().info("InventoryWizard enabled");
         getLogger().info("Commands: /iwiz [hotbar|inventory|all]");
-        getLogger().info("Hotbar: Shift+Right-click in hotbar OR Double-click in hotbar");
+        getLogger().info("Hotbar: Shift+Right-click in hotbar or Double-click in hotbar");
         getLogger().info("Inventory: Shift+Right-click in main inventory");
         getLogger().info("Both: Shift+Right-click in hotbar (with all permission)");
-        getLogger().info("New: Shift+Right-click in hotbar slot 4 to cycle sorting modes!");
-        getLogger().info("Storage: H2 database for optimal performance! 🚀");
-        getLogger().info("Rate limiting: Enabled to prevent resource exhaustion! 🛡️");
-        getLogger().info("Cast your sorting spells wisely! 🧙‍♂️");
+        getLogger().info("New: Shift+Right-click in hotbar slot 4 to cycle sorting modes");
+        getLogger().info("Using H2 database for storage");
+        getLogger().info("Rate limiting enabled");
+        getLogger().info("Use /iwiz to sort inventory");
     }
     
     public PlayerDataManager getPlayerDataManager() {
@@ -50,6 +50,6 @@ public class InventoryWizardPlugin extends JavaPlugin {
         if (playerDataManager != null) {
             playerDataManager.close();
         }
-        getLogger().info("InventoryWizard is resting... The magic will return! ✨");
+        getLogger().info("InventoryWizard disabled");
     }
 }

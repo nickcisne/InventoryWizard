@@ -46,7 +46,7 @@ public class SortListener implements Listener {
                 if (event.getSlot() == 4) {
                     PlayerDataManager.SortMode newMode = preferences.cyclePlayerSortMode(player);
                     player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.6f);
-                    player.sendMessage("§e🔄 Sorting mode changed to: §6" + newMode.getDisplayName());
+                    player.sendMessage("Sorting mode changed to " + newMode.getDisplayName());
                     return;
                 }
                 
@@ -55,7 +55,7 @@ public class SortListener implements Listener {
                     long timeRemaining = plugin.getRateLimiter().getTimeUntilNextSort(player);
                     int sortsUsed = plugin.getRateLimiter().getCurrentSortCount(player);
                     String rateLimitMessage = ErrorHandler.getRateLimitErrorMessage(timeRemaining, sortsUsed);
-                    player.sendMessage("§c⏰ " + rateLimitMessage);
+                    player.sendMessage(rateLimitMessage);
                     return;
                 }
                 
@@ -76,7 +76,7 @@ public class SortListener implements Listener {
                     }
                     
                     player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.0f);
-                    player.sendMessage("§b🧙✨ Complete inventory enchanted by the InventoryWizard! (" + mode.getDisplayName() + ")");
+                    player.sendMessage("Inventory sorted (" + mode.getDisplayName() + ")");
                 }
                 // Fall back to hotbar-only sorting
                 else if (player.hasPermission("inventorywizard.hotbar")) {
@@ -92,7 +92,7 @@ public class SortListener implements Listener {
                     }
                     
                     player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.4f);
-                    player.sendMessage("§6✨ Hotbar organized by the InventoryWizard! (" + mode.getDisplayName() + ")");
+                    player.sendMessage("Hotbar sorted (" + mode.getDisplayName() + ")");
                 }
                 return;
             }
@@ -108,7 +108,7 @@ public class SortListener implements Listener {
                     long timeRemaining = plugin.getRateLimiter().getTimeUntilNextSort(player);
                     int sortsUsed = plugin.getRateLimiter().getCurrentSortCount(player);
                     String rateLimitMessage = ErrorHandler.getRateLimitErrorMessage(timeRemaining, sortsUsed);
-                    player.sendMessage("§c⏰ " + rateLimitMessage);
+                    player.sendMessage(rateLimitMessage);
                     return;
                 }
                 
@@ -126,7 +126,7 @@ public class SortListener implements Listener {
                 
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.2f);
                 String containerType = getContainerDisplayName(clickedInventory.getType());
-                player.sendMessage("§a✨ " + containerType + " magically sorted! (" + mode.getDisplayName() + ")");
+                player.sendMessage(containerType + " sorted (" + mode.getDisplayName() + ")");
                 
             } 
             // Check if it's player inventory (main inventory slots, excluding hotbar)
@@ -139,7 +139,7 @@ public class SortListener implements Listener {
                     long timeRemaining = plugin.getRateLimiter().getTimeUntilNextSort(player);
                     int sortsUsed = plugin.getRateLimiter().getCurrentSortCount(player);
                     String rateLimitMessage = ErrorHandler.getRateLimitErrorMessage(timeRemaining, sortsUsed);
-                    player.sendMessage("§c⏰ " + rateLimitMessage);
+                    player.sendMessage(rateLimitMessage);
                     return;
                 }
                 
@@ -156,7 +156,7 @@ public class SortListener implements Listener {
                 }
                 
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.2f);
-                player.sendMessage("§a✨ Inventory organized with wizard magic! (" + mode.getDisplayName() + ")");
+                player.sendMessage("Inventory sorted (" + mode.getDisplayName() + ")");
             }
         }
         
@@ -180,7 +180,7 @@ public class SortListener implements Listener {
                     long timeRemaining = plugin.getRateLimiter().getTimeUntilNextSort(player);
                     int sortsUsed = plugin.getRateLimiter().getCurrentSortCount(player);
                     String rateLimitMessage = ErrorHandler.getRateLimitErrorMessage(timeRemaining, sortsUsed);
-                    player.sendMessage("§c⏰ " + rateLimitMessage);
+                    player.sendMessage(rateLimitMessage);
                     return;
                 }
                 
@@ -197,7 +197,7 @@ public class SortListener implements Listener {
                 }
                 
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.4f);
-                player.sendMessage("§6✨ Hotbar arranged by wizardry! (" + mode.getDisplayName() + ")");
+                player.sendMessage("Hotbar sorted (" + mode.getDisplayName() + ")");
             }
         }
         

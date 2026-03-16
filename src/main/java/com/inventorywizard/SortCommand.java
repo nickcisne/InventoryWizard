@@ -22,7 +22,7 @@ public class SortCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("§c🧙✨ The InventoryWizard's magic only works for players!");
+            sender.sendMessage("This command can only be used by players");
             return true;
         }
         
@@ -35,7 +35,7 @@ public class SortCommand implements CommandExecutor, TabCompleter {
             case "hotbar":
             case "hb":
                 if (!player.hasPermission("inventorywizard.hotbar")) {
-                    player.sendMessage("§c🧙✨" + ErrorHandler.getPermissionErrorMessage());
+                    player.sendMessage(ErrorHandler.getPermissionErrorMessage());
                     return true;
                 }
                 
@@ -44,7 +44,7 @@ public class SortCommand implements CommandExecutor, TabCompleter {
                     long timeRemaining = plugin.getRateLimiter().getTimeUntilNextSort(player);
                     int sortsUsed = plugin.getRateLimiter().getCurrentSortCount(player);
                     String rateLimitMessage = ErrorHandler.getRateLimitErrorMessage(timeRemaining, sortsUsed);
-                    player.sendMessage("§c⏰ " + rateLimitMessage);
+                    player.sendMessage(rateLimitMessage);
                     return true;
                 }
                 
@@ -61,13 +61,13 @@ public class SortCommand implements CommandExecutor, TabCompleter {
                 }
                 
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.4f);
-                player.sendMessage("§6✨ Hotbar enchanted by the InventoryWizard! (" + mode.getDisplayName() + ")");
+                player.sendMessage("Hotbar sorted (" + mode.getDisplayName() + ")");
                 break;
                 
             case "inventory":
             case "inv":
                 if (!player.hasPermission("inventorywizard.inventory")) {
-                    player.sendMessage("§c🧙✨ " + ErrorHandler.getPermissionErrorMessage());
+                    player.sendMessage(ErrorHandler.getPermissionErrorMessage());
                     return true;
                 }
                 
@@ -76,7 +76,7 @@ public class SortCommand implements CommandExecutor, TabCompleter {
                     long timeRemaining = plugin.getRateLimiter().getTimeUntilNextSort(player);
                     int sortsUsed = plugin.getRateLimiter().getCurrentSortCount(player);
                     String rateLimitMessage = ErrorHandler.getRateLimitErrorMessage(timeRemaining, sortsUsed);
-                    player.sendMessage("§c⏰ " + rateLimitMessage);
+                    player.sendMessage(rateLimitMessage);
                     return true;
                 }
                 
@@ -93,13 +93,13 @@ public class SortCommand implements CommandExecutor, TabCompleter {
                 }
                 
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.2f);
-                player.sendMessage("§a✨ Inventory magically organized! (" + invMode.getDisplayName() + ")");
+                player.sendMessage("Inventory sorted (" + invMode.getDisplayName() + ")");
                 break;
                 
             case "all":
             case "both":
                 if (!player.hasPermission("inventorywizard.all")) {
-                    player.sendMessage("§c🧙✨ " + ErrorHandler.getPermissionErrorMessage());
+                    player.sendMessage(ErrorHandler.getPermissionErrorMessage());
                     return true;
                 }
                 
@@ -108,7 +108,7 @@ public class SortCommand implements CommandExecutor, TabCompleter {
                     long timeRemaining = plugin.getRateLimiter().getTimeUntilNextSort(player);
                     int sortsUsed = plugin.getRateLimiter().getCurrentSortCount(player);
                     String rateLimitMessage = ErrorHandler.getRateLimitErrorMessage(timeRemaining, sortsUsed);
-                    player.sendMessage("§c⏰ " + rateLimitMessage);
+                    player.sendMessage(rateLimitMessage);
                     return true;
                 }
                 
@@ -126,75 +126,75 @@ public class SortCommand implements CommandExecutor, TabCompleter {
                 }
                 
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.0f);
-                player.sendMessage("§b🧙✨ Complete inventory transformation complete! (" + allMode.getDisplayName() + ")");
+                player.sendMessage("Inventory sorted (" + allMode.getDisplayName() + ")");
                 break;
                 
             case "regen-credentials":
                 if (!player.hasPermission("inventorywizard.admin")) {
-                    player.sendMessage("§c🧙✨ " + ErrorHandler.getPermissionErrorMessage());
+                    player.sendMessage(ErrorHandler.getPermissionErrorMessage());
                     return true;
                 }
                 plugin.getPlayerDataManager().regenerateCredentials();
-                player.sendMessage("§a🔐 Database credentials regenerated successfully!");
-                player.sendMessage("§7New credentials have been saved to the configuration file.");
+                player.sendMessage("Database credentials regenerated");
+                player.sendMessage("New credentials saved to config file");
                 break;
                 
             case "rate-limit":
                 if (!player.hasPermission("inventorywizard.admin")) {
-                    player.sendMessage("§c🧙✨ " + ErrorHandler.getPermissionErrorMessage());
+                    player.sendMessage(ErrorHandler.getPermissionErrorMessage());
                     return true;
                 }
                 String stats = plugin.getRateLimiter().getPlayerStats(player);
-                player.sendMessage("§6⏰ Rate Limiting Information:");
+                player.sendMessage("Rate limiting info");
                 for (String line : stats.split("\n")) {
-                    player.sendMessage("§7" + line);
+                    player.sendMessage(line);
                 }
                 break;
                 
             case "reset-rate-limit":
                 if (!player.hasPermission("inventorywizard.admin")) {
-                    player.sendMessage("§c🧙✨ " + ErrorHandler.getPermissionErrorMessage());
+                    player.sendMessage(ErrorHandler.getPermissionErrorMessage());
                     return true;
                 }
                 plugin.getRateLimiter().resetPlayer(player);
-                player.sendMessage("§a⏰ Rate limiting reset for your account!");
+                player.sendMessage("Rate limiting reset");
                 break;
                 
             case "rate-limit-enabled":
                 if (!player.hasPermission("inventorywizard.admin")) {
-                    player.sendMessage("§c🧙✨ " + ErrorHandler.getPermissionErrorMessage());
+                    player.sendMessage(ErrorHandler.getPermissionErrorMessage());
                     return true;
                 }
                 if (args.length < 3) {
-                    player.sendMessage("§e🧙✨ Usage: §f/iwiz rate-limit-enabled <playername> <on|off>");
+                    player.sendMessage("Usage: /iwiz rate-limit-enabled <playername> <on|off>");
                     return true;
                 }
                 String targetPlayerName = args[1];
                 String state = args[2].toLowerCase();
                 boolean enableRateLimit = state.equals("on");
                 if (!state.equals("on") && !state.equals("off")) {
-                    player.sendMessage("§c🧙✨ Invalid state. Use 'on' or 'off'.");
+                    player.sendMessage("Invalid state use 'on' or 'off'");
                     return true;
                 }
                 
                 // find the target player
                 Player targetPlayer = plugin.getServer().getPlayer(targetPlayerName);
                 if (targetPlayer == null) {
-                    player.sendMessage("§c🧙✨ Player '" + targetPlayerName + "' is not online.");
+                    player.sendMessage("Player '" + targetPlayerName + "' is not online");
                     return true;
                 }
                 
                 // set the rate limit preference
                 plugin.getPlayerDataManager().setPlayerRateLimited(targetPlayer, enableRateLimit);
-                player.sendMessage("§a🛡️ Rate limiting " + (enableRateLimit ? "enabled" : "disabled") + " for " + targetPlayer.getName() + ".");
-                targetPlayer.sendMessage("§6🛡️ Rate limiting for InventoryWizard sorting has been " + (enableRateLimit ? "enabled" : "disabled") + " by an admin.");
+                player.sendMessage("Rate limiting " + (enableRateLimit ? "enabled" : "disabled") + " for " + targetPlayer.getName());
+                targetPlayer.sendMessage("Rate limiting for sorting has been " + (enableRateLimit ? "enabled" : "disabled") + " by an admin");
                 break;
                 
 
                 
             default:
-                player.sendMessage("§e🧙✨ InventoryWizard Usage: §f/iwiz [hotbar|inventory|all]");
-                player.sendMessage("§7Cast your sorting spells with: hotbar, inventory, or all");
+                player.sendMessage("Usage: /iwiz [hotbar|inventory|all]");
+                player.sendMessage("Use: hotbar, inventory, or all");
                 return true;
         }
         
